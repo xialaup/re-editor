@@ -26,7 +26,7 @@ class _CodeEditable extends StatefulWidget {
   final bool showCursorWhenReadOnly;
   final EdgeInsetsGeometry padding;
   final EdgeInsetsGeometry margin;
-  final Widget? sperator;
+  final Widget? leadingDivider;
   final Border? border;
   final BorderRadius? borderRadius;
   final Clip clipBehavior;
@@ -67,7 +67,7 @@ class _CodeEditable extends StatefulWidget {
     required this.showCursorWhenReadOnly,
     required this.padding,
     required this.margin,
-    required this.sperator,
+    required this.leadingDivider,
     this.border,
     this.borderRadius,
     this.clipBehavior = Clip.none,
@@ -247,8 +247,8 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
             children: [
               if (indicator != null)
                 indicator,
-              if (widget.sperator != null)
-                widget.sperator!,
+              if (widget.leadingDivider != null)
+                widget.leadingDivider!,
               Expanded(
                 child: RepaintBoundary(
                   child: CompositedTransformTarget(
