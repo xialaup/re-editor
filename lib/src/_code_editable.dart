@@ -397,7 +397,13 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
     if (!mounted) {
       return;
     }
-    final _CodeAutocompleteState? autocompleteState = context.findAncestorStateOfType<_CodeAutocompleteState>();
+    final _CodeAutocompleteState? autocompleteState;
+    try {
+      autocompleteState = context.findAncestorStateOfType<_CodeAutocompleteState>();
+    } catch (e) {
+      // Ignore the error when the widget is disposed.
+      return;
+    }
     if (autocompleteState == null) {
       return;
     }
