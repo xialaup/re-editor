@@ -520,6 +520,8 @@ class _CodeFieldRender extends RenderBox implements MouseTrackerAnnotation {
     markNeedsPaint();
   }
 
+  int? get maxLengthSingleLineRendering => _maxLengthSingleLineRendering;
+
   set maxLengthSingleLineRendering(int? value) {
     if (_maxLengthSingleLineRendering == value) {
       return;
