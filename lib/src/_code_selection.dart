@@ -375,11 +375,19 @@ class _CodeSelectionGestureDetectorState extends State<_CodeSelectionGestureDete
   void _autoScrollWhenDragging() {
     final Offset? position = _dragPosition;
     Future.delayed(const Duration(milliseconds: 100), (() {
+      // Widget may have been disposed while the delayed callback was pending.
+      if (!mounted) {
+        return;
+      }
       if (_dragPosition == null || position == null) {
         return;
       }
       if (_dragging) {
-        render.autoScrollWhenDragging(_dragPosition!);
+        final renderObject = widget.editorKey.currentContext?.findRenderObject();
+        if (renderObject is! _CodeFieldRender) {
+          return;
+        }
+        renderObject.autoScrollWhenDragging(_dragPosition!);
         _extendSelection(_dragPosition!, _SelectionChangedCause.drag);
       }
       _autoScrollWhenDragging();
@@ -909,7 +917,12 @@ class _MobileSelectionOverlayController implements _SelectionOverlayController {
       if (!_startHandleDragging) {
         return;
       }
-      ensureRender.autoScrollWhenDragging(_startHandleDragLastPosition);
+      // Overlay/controller may outlive the field after dispose.
+      final renderObject = editorKey.currentContext?.findRenderObject();
+      if (renderObject is! _CodeFieldRender) {
+        return;
+      }
+      renderObject.autoScrollWhenDragging(_startHandleDragLastPosition);
       _handleStartHandleDragUpdate(_startHandleDragLastPosition);
       _autoScrollWhenStartHandleDragging();
     }));
@@ -920,7 +933,11 @@ class _MobileSelectionOverlayController implements _SelectionOverlayController {
       if (!_endHandleDragging) {
         return;
       }
-      ensureRender.autoScrollWhenDragging(_endHandleDragLastPosition);
+      final renderObject = editorKey.currentContext?.findRenderObject();
+      if (renderObject is! _CodeFieldRender) {
+        return;
+      }
+      renderObject.autoScrollWhenDragging(_endHandleDragLastPosition);
       _handleEndHandleDragUpdate(_endHandleDragLastPosition);
       _autoScrollWhenEndHandleDragging();
     }));
