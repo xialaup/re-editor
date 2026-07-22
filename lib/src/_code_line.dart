@@ -955,16 +955,6 @@ class _CodeLineEditingControllerImpl extends ValueNotifier<CodeLineEditingValue>
       if (text == null || text.isEmpty) {
         return;
       }
-      // Disable paste if the text is too long to render in a single line, to avoid performance issues
-      final int? maxLengthSingleLineRendering = _render?.maxLengthSingleLineRendering;
-      if (maxLengthSingleLineRendering != null && text.length > maxLengthSingleLineRendering) {
-        final List<String> lines = text.textLines;
-        for (final String line in lines) {
-          if (line.length > maxLengthSingleLineRendering) {
-            return;
-          }
-        }
-      }
       replaceSelection(text);
     });
   }
