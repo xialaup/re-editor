@@ -345,6 +345,12 @@ const Map<CodeShortcutType, List<ShortcutActivator>> _kDefaultMacCodeShortcutsAc
     SingleActivator(LogicalKeyboardKey.arrowDown, meta: true),
     SingleActivator(LogicalKeyboardKey.end, control: true)
   ],
+  CodeShortcutType.cursorMovePageUp: [
+    SingleActivator(LogicalKeyboardKey.pageUp)
+  ],
+  CodeShortcutType.cursorMovePageDown: [
+    SingleActivator(LogicalKeyboardKey.pageDown)
+  ],
   CodeShortcutType.cursorMoveWordBoundaryBackward: [
     SingleActivator(LogicalKeyboardKey.arrowLeft, alt: true)
   ],
@@ -534,6 +540,12 @@ const Map<CodeShortcutType, List<ShortcutActivator>> _kDefaultCommonCodeShortcut
     SingleActivator(LogicalKeyboardKey.end, control: true),
   // NumLockedSingleActivator(LogicalKeyboardKey.numpad1, shift: true, control: true),
   // NumUnlockedSingleActivator(LogicalKeyboardKey.numpad1, control: true),
+  ],
+  CodeShortcutType.cursorMovePageUp: [
+    SingleActivator(LogicalKeyboardKey.pageUp),
+  ],
+  CodeShortcutType.cursorMovePageDown: [
+    SingleActivator(LogicalKeyboardKey.pageDown),
   ],
   CodeShortcutType.cursorMoveWordBoundaryBackward: [
     SingleActivator(LogicalKeyboardKey.arrowLeft, control: true),
